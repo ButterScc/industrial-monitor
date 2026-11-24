@@ -1,0 +1,59 @@
+<div class="container">
+    
+  <h1>Industrial Monitor</h1>
+  <p>Industrial IoT Monitoring System</p>
+
+  <div class="stats">
+    <div class="card">
+      <h3>Total Equipment</h3>
+      <h2><%= @total_equipments %></h2>
+    </div>
+
+    <div class="card">
+      <h3>Total Sensors</h3>
+      <h2><%= @total_sensors %></h2>
+    </div>
+
+    <div class="card">
+      <h3>Critical Alerts</h3>
+      <h2><%= @critical_alerts %></h2>
+    </div>
+  </div>
+
+  <h2>Latest Sensor Readings</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Equipment</th>
+        <th>Sensor</th>
+        <th>Value</th>
+        <th>Recorded At</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @latest_readings.each do |reading| %>
+        <tr>
+          <td><%= reading.sensor.equipment.name %></td>
+          <td><%= reading.sensor.name %></td>
+          <td>
+            <%= reading.value %>
+            <%= reading.sensor.unit %>
+          </td>
+          <td><%= reading.recorded_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h2>Latest Alerts</h2>
+
+  <% @latest_alerts.each do |alert| %>
+    <div class="card">
+      <strong><%= alert.severity.upcase %></strong>
+      <p><%= alert.message %></p>
+    </div>
+  <% end %>
+</div>
+

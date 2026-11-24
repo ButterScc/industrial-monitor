@@ -1,0 +1,47 @@
+<%= form_with(model: sensor) do |form| %>
+  <% if sensor.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(sensor.errors.count, "error") %> prohibited this sensor from being saved:</h2>
+
+      <ul>
+        <% sensor.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :equipment_id, style: "display: block" %>
+    <%= form.number_field :equipment_id %>
+  </div>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :sensor_type, style: "display: block" %>
+    <%= form.text_field :sensor_type %>
+  </div>
+
+  <div>
+    <%= form.label :unit, style: "display: block" %>
+    <%= form.text_field :unit %>
+  </div>
+
+  <div>
+    <%= form.label :warning_threshold, style: "display: block" %>
+    <%= form.text_field :warning_threshold %>
+  </div>
+
+  <div>
+    <%= form.label :critical_threshold, style: "display: block" %>
+    <%= form.text_field :critical_threshold %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
